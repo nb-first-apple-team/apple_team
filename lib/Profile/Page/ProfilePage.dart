@@ -12,7 +12,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  bool isButtonPress = false;
+  bool isButtonPress = true;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class _ProfileState extends State<Profile> {
             child: isButtonPress
                 ? ProfileList(itemBuilder: (context, index) => ListTile())
                 : ReviewPage(),
-          ),
+          )
         ],
       ),
     );
