@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProfileTop extends StatelessWidget {
-  const ProfileTop({super.key});
+  ProfileTop({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Text('프로필');
   }
 }
