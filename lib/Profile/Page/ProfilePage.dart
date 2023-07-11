@@ -4,7 +4,7 @@ import 'package:miniproject/Profile/ProfileList.dart';
 import 'package:miniproject/Profile/ProfileTop.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({Key? key});
+  Profile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +12,9 @@ class Profile extends StatelessWidget {
       body: Column(
         children: [
           ProfileTop(),
+          SizedBox(
+            height: 30,
+          ),
           ProfileList(
             itemBuilder: (context, index) => ListTile(),
           ),
