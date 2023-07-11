@@ -2,13 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProfileList extends StatelessWidget {
-  ProfileList({super.key, required this.itemBuilder});
+  ProfileList({Key? key, required this.itemBuilder}) : super(key: key);
   final IndexedWidgetBuilder itemBuilder;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemBuilder: (context, index) => ListTile(),
+      itemCount: 10,
+      itemBuilder: (context, index) => ListTile(
+        leading: Icon(Icons.deblur),
+      ),
     );
   }
 }

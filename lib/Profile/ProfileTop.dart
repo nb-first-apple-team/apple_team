@@ -6,6 +6,9 @@ class ProfileTop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('프로필');
+    return Text(
+      '프로필',
+      style: TextStyle(fontSize: 50),
+    );
   }
 }
