@@ -34,7 +34,9 @@ class _ProfilepageState extends State<Profilepage> {
                 },
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(180, 50),
-                  primary: Colors.grey.shade400,
+                  primary: widget.isButtonPress
+                      ? Colors.grey.shade600
+                      : Colors.grey.shade400,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
@@ -52,7 +54,9 @@ class _ProfilepageState extends State<Profilepage> {
                 },
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(180, 50),
-                  primary: Colors.grey.shade200,
+                  primary: widget.isButtonPress
+                      ? Colors.grey.shade400
+                      : Colors.grey.shade600,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),

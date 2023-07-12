@@ -16,9 +16,10 @@ class ContentPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => Profile(
-                          personName: '세준',
-                        )),
+                  builder: (context) => Profile(
+                    personName: '세준',
+                  ),
+                ),
               );
             },
             child: ListTile(
