@@ -144,7 +144,7 @@ class _MyPageState extends State<MyPage> {
                             ),
                           );
                         },
-                        child: MakeImageSlider("박세준")),
+                        child: MakeImageSlider("박세준\u{1f60e}")),
                     InkWell(
                         onTap: () {
                           Navigator.push(
@@ -157,7 +157,7 @@ class _MyPageState extends State<MyPage> {
                             ),
                           );
                         },
-                        child: MakeImageSlider("전지성")),
+                        child: MakeImageSlider("전지성😋")),
                     InkWell(
                         onTap: () {
                           Navigator.push(
@@ -170,7 +170,7 @@ class _MyPageState extends State<MyPage> {
                             ),
                           );
                         },
-                        child: MakeImageSlider("사석현")),
+                        child: MakeImageSlider("사석현🤗")),
                     InkWell(
                         onTap: () {
                           Navigator.push(
@@ -183,7 +183,7 @@ class _MyPageState extends State<MyPage> {
                             ),
                           );
                         },
-                        child: MakeImageSlider("박혜린")),
+                        child: MakeImageSlider("박혜린🤩")),
                     InkWell(
                         onTap: () {
                           Navigator.push(
@@ -196,7 +196,7 @@ class _MyPageState extends State<MyPage> {
                             ),
                           );
                         },
-                        child: MakeImageSlider("이지현")),
+                        child: MakeImageSlider("이지현🤨")),
                   ],
                 ),
               ),
@@ -312,7 +312,7 @@ class _MyPageState extends State<MyPage> {
             width: 343,
             height: 35,
             child: Text(
-              'minute ago',
+              '',
               style: TextStyle(
                 color: Color(0xFFBDBDBD),
                 fontSize: 16,
