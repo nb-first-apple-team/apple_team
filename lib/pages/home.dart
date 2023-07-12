@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-
-import 'Contetnt.dart';
 
 void main() {
   runApp(const HomePage());
@@ -28,10 +24,13 @@ class HomePage extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Image.network(
-                      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/976px-Apple_logo_black.svg.png',
-                      width: 120,
-                      height: 120,
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Image.asset(
+                        'assets/images3/apple.png',
+                        width: 80, // Adjust the width as desired
+                        height: 80, // Adjust the height as desired
+                      ),
                     ),
                     const SizedBox(width: 10),
                     Flexible(
@@ -42,7 +41,7 @@ class HomePage extends StatelessWidget {
                           top: 50,
                         ),
                         child: Text(
-                          'Welcome\n ,apple\n Team',
+                          'Welcome\n ,apple\n  Team',
                           style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
@@ -94,12 +93,7 @@ class HomePage extends StatelessWidget {
                             SizedBox(height: 70),
                             ElevatedButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ContentPage()),
-                                );
-// 버튼 클릭 시 동작
+                                // 버튼 클릭 시 동작
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.green[800],
