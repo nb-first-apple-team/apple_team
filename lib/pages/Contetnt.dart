@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-
-
-import '../Profile/Page/ProfilePage2.dart';
-
 import 'package:flutter/cupertino.dart';
-import 'package:miniproject/pages/home.dart';
-import 'package:miniproject/Profile/Page/ProfilePage.dart';
 import 'package:miniproject/team_member.dart';
-
+import '../Profile/Page/ProfilePage2.dart';
 
 class ContentPage extends StatelessWidget {
   const ContentPage({Key? key}) : super(key: key);
@@ -64,7 +58,7 @@ class _MyPageState extends State<MyPage> {
     'https://penguin1004.tistory.com/',
   ];
   static List<String> teamImagePath = [
-    'assets/J1.jpeg',
+    'assets/J1.png',
     'assets/G4.jpeg',
     'assets/S1.jpeg',
     'assets/P4.jpeg',
@@ -92,60 +86,86 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pushReplacement(
+      body: ListView(
+        children: [
+          InkWell(
+            onTap: () {
+              Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomePage()),
+                MaterialPageRoute(
+                  builder: (context) => Profile(
+                    personName: '세준',
+                    teamMember: teamData[0],
+                  ),
+                ),
               );
             },
-            icon: Icon(Icons.arrow_back),
-          ),
-          title: Text(
-            'Content',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+            child: ListTile(
+              title: Text('세준'),
             ),
           ),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          iconTheme: IconThemeData(
-            color: Colors.black,
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Profile(
+                          personName: '지성',
+                          teamMember: teamData[1],
+                        )),
+              );
+            },
+            child: ListTile(
+              title: Text('지성'),
+            ),
           ),
-        ),
-        body: ListView.builder(
-          itemCount: teamData.length,
-          itemBuilder: (context, index) {
-            return Card(
-              child: ListTile(
-                title: Text(teamData[index].name),
-                leading: SizedBox(
-                    height: 150,
-                    width: 150,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                            child: Image.asset(
-                          teamData[index].imagePath,
-                        ))
-                      ],
-                    )),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ProfilePage(
-                            teamMember: teamData[index],
-                          )));
-                  debugPrint(teamData[index].name);
-                },
-              ),
-            );
-          },
-        ));
-
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Profile(
+                          personName: '석현',
+                          teamMember: teamData[2],
+                        )),
+              );
+            },
+            child: ListTile(
+              title: Text('석현'),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Profile(
+                          personName: '혜린',
+                          teamMember: teamData[3],
+                        )),
+              );
+            },
+            child: ListTile(
+              title: Text('혜린'),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Profile(
+                          personName: '지현',
+                          teamMember: teamData[4],
+                        )),
+              );
+            },
+            child: ListTile(
+              title: Text('지현'),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

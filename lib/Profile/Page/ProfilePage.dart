@@ -1,34 +1,26 @@
 import 'package:flutter/material.dart';
-
 import '../ProfileList.dart';
 import '../ProfileTop.dart';
 import '../ReviewList.dart';
+import 'package:miniproject/team_member.dart';
 
 class Profilepage extends StatefulWidget {
   final List<Person> personList;
   bool isButtonPress = true;
   final TeamMember teamMember;
 
-
-  Profilepage({Key? key, required this.personList, required this.isButtonPress,required this.teamMember})
-      : super(key: key);
+  Profilepage({
+    Key? key,
+    required this.personList,
+    required this.isButtonPress,
+    required this.teamMember,
+  }) : super(key: key);
 
   @override
   State<Profilepage> createState() => _ProfilepageState();
 }
 
 class _ProfilepageState extends State<Profilepage> {
-
-
-
-
- 
-
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,14 +44,11 @@ class _ProfilepageState extends State<Profilepage> {
       ),
       body: Column(
         children: [
-
-
           ProfileTop(teamMember: widget.teamMember),
           SizedBox(
             width: 10,
             height: 10,
           ),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

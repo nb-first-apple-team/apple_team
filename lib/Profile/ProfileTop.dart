@@ -28,7 +28,7 @@ class ProfileTop extends StatelessWidget {
               ),
             ),
             Transform.translate(
-              offset: Offset(0, 12), // Adjust the offset as needed
+              offset: Offset(0, 5), // Adjust the offset as needed
               child: CircleAvatar(
                 radius: 90,
                 backgroundImage: AssetImage(teamMember.imagePath),

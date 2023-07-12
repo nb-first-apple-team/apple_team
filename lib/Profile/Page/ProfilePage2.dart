@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:miniproject/Profile/Page/ProfilePage.dart';
 import 'package:miniproject/Profile/ProfileList.dart';
+import 'package:miniproject/team_member.dart';
 
 class Profile extends StatefulWidget {
   final String personName;
-
-  Profile({required this.personName});
+  final TeamMember teamMember;
+  Profile({required this.personName, required this.teamMember});
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -41,7 +42,7 @@ class _ProfileState extends State<Profile> {
           photo: Image.asset('images/sejun4.png'),
         ),
       ];
-    } else if (widget.personName == '헤린') {
+    } else if (widget.personName == '혜린') {
       personList = [
         Person(
           title: '이름',
@@ -51,7 +52,7 @@ class _ProfileState extends State<Profile> {
         Person(
           title: 'mbti',
           subtitle: 'ISTJ',
-          photo: Image.asset('images/hyerin2.png'),
+          photo: Image.asset('images/hyerin4.png'),
         ),
         Person(
           title: '장점',
@@ -61,7 +62,7 @@ class _ProfileState extends State<Profile> {
         Person(
           title: '협업스타일',
           subtitle: '최대 10분 안으로는 피드백 드리려고 하는 피드백왕',
-          photo: Image.asset('images/hyerin4.png'),
+          photo: Image.asset('images/hyerin2.png'),
         ),
       ];
     } else if (widget.personName == '석현') {
@@ -135,6 +136,9 @@ class _ProfileState extends State<Profile> {
       ];
     }
 
-    return Profilepage(personList: personList, isButtonPress: isButtonPress);
+    return Profilepage(
+        personList: personList,
+        isButtonPress: isButtonPress,
+        teamMember: widget.teamMember);
   }
 }
