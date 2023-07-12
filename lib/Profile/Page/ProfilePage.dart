@@ -1,27 +1,48 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:miniproject/Profile/ProfileList.dart';
 import 'package:miniproject/Profile/ProfileTop.dart';
 import 'package:miniproject/Profile/ReviewList.dart';
+import 'package:miniproject/team_member.dart';
 
-class Profile extends StatefulWidget {
-  Profile({Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key, required this.teamMember}) : super(key: key);
+
+  final TeamMember teamMember;
 
   @override
-  _ProfileState createState() => _ProfileState();
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ProfilePageState extends State<ProfilePage> {
   bool isButtonPress = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          widget.teamMember.name,
+          style: TextStyle(color: Colors.black),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+      ),
       body: Column(
         children: [
-          ProfileTop(),
+          ProfileTop(teamMember: widget.teamMember),
           SizedBox(
-            height: 50,
+            width: 10,
+            height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
