@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import '../Profile/Page/ProfilePage2.dart';
-import '../Profile/Page/ProfilePage5.dart';
-import '../Profile/Page/ProfilePage.dart';
-import '../Profile/Page/ProfilePage3.dart';
-import '../Profile/Page/ProfilePage4.dart';
 
 class ContentPage extends StatelessWidget {
   const ContentPage({Key? key}) : super(key: key);
@@ -18,7 +15,10 @@ class ContentPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Profile()),
+                MaterialPageRoute(
+                    builder: (context) => Profile(
+                          personName: '세준',
+                        )),
               );
             },
             child: ListTile(
@@ -29,7 +29,10 @@ class ContentPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Profile2()),
+                MaterialPageRoute(
+                    builder: (context) => Profile(
+                          personName: '헤린',
+                        )),
               );
             },
             child: ListTile(
@@ -40,7 +43,10 @@ class ContentPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Profile3()),
+                MaterialPageRoute(
+                    builder: (context) => Profile(
+                          personName: '석현',
+                        )),
               );
             },
             child: ListTile(
@@ -51,7 +57,10 @@ class ContentPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Profile4()),
+                MaterialPageRoute(
+                    builder: (context) => Profile(
+                          personName: '지현',
+                        )),
               );
             },
             child: ListTile(
@@ -62,7 +71,10 @@ class ContentPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Profile5()),
+                MaterialPageRoute(
+                    builder: (context) => Profile(
+                          personName: '지성',
+                        )),
               );
             },
             child: ListTile(
