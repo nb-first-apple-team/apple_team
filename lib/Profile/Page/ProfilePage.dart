@@ -94,6 +94,7 @@ class _ProfilepageState extends State<Profilepage> {
               ),
             ],
           ),
+          SizedBox(height: 20),
           Expanded(
             child: widget.isButtonPress
                 ? ProfileList(personList: widget.personList)

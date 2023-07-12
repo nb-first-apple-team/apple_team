@@ -16,21 +16,24 @@ class ProfileList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: personList.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          leading: personList[index].photo,
-          title: Text(
-            personList[index].title,
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          subtitle: Text(
-            personList[index].subtitle,
-            style: TextStyle(fontWeight: FontWeight.w500),
-          ),
-        );
-      },
+    return Container(
+      color: Colors.grey.shade100,
+      child: ListView.builder(
+        itemCount: personList.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: personList[index].photo,
+            title: Text(
+              personList[index].title,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text(
+              personList[index].subtitle,
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+          );
+        },
+      ),
     );
   }
 }
