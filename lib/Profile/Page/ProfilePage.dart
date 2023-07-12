@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import '../ProfileList.dart';
 import '../ProfileTop.dart';
 import '../ReviewList.dart';
@@ -7,8 +7,10 @@ import '../ReviewList.dart';
 class Profilepage extends StatefulWidget {
   final List<Person> personList;
   bool isButtonPress = true;
+  final TeamMember teamMember;
 
-  Profilepage({Key? key, required this.personList, required this.isButtonPress})
+
+  Profilepage({Key? key, required this.personList, required this.isButtonPress,required this.teamMember})
       : super(key: key);
 
   @override
@@ -16,13 +18,48 @@ class Profilepage extends StatefulWidget {
 }
 
 class _ProfilepageState extends State<Profilepage> {
+
+
+
+
+ 
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          widget.teamMember.name,
+          style: TextStyle(color: Colors.black),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+      ),
       body: Column(
         children: [
-          ProfileTop(),
-          SizedBox(height: 50),
+
+
+          ProfileTop(teamMember: widget.teamMember),
+          SizedBox(
+            width: 10,
+            height: 10,
+          ),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
