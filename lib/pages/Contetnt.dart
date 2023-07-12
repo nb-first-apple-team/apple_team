@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:miniproject/team_member.dart';
 import '../Profile/Page/ProfilePage2.dart';
 
-class ContentPage extends StatelessWidget {
+class ContentPage extends StatefulWidget {
   const ContentPage({Key? key}) : super(key: key);
 
+  @override
+  State<ContentPage> createState() => _ContentPageState();
+}
+
+class _ContentPageState extends State<ContentPage> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -71,7 +77,6 @@ class _MyPageState extends State<MyPage> {
     'assets/P1.jpeg',
     'assets/I2.jpeg',
   ];
-
   final List<TeamMember> teamData = List.generate(
       collaboration.length,
       (index) => TeamMember(
@@ -82,86 +87,238 @@ class _MyPageState extends State<MyPage> {
           blogLink: blogLink[index],
           imagePath: teamImagePath[index],
           backPath: teamBackImagePath[index]));
+  int _current = 0;
+  final CarouselController _controller = CarouselController();
+  List imageList = [
+    "https://cdn.pixabay.com/photo/2014/04/14/20/11/pink-324175_1280.jpg",
+    "https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_1280.jpg",
+    "https://cdn.pixabay.com/photo/2012/03/01/00/55/flowers-19830_1280.jpg",
+    "https://cdn.pixabay.com/photo/2015/06/19/20/13/sunset-815270_1280.jpg",
+    "https://cdn.pixabay.com/photo/2016/01/08/05/24/sunflower-1127174_1280.jpg",
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      body: Column(
         children: [
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Profile(
-                    personName: '세준',
-                    teamMember: teamData[0],
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              padding: const EdgeInsets.only(
+                top: 50,
+              ),
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(color: Colors.white),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 343,
+                      height: 36,
+                      child: Text(
+                        'Content',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 30,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Profile(
+                                personName: '세준',
+                                teamMember: teamData[0],
+                              ),
+                            ),
+                          );
+                        },
+                        child: MakeImageSlider("박세준")),
+                    InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Profile(
+                                personName: '지성',
+                                teamMember: teamData[1],
+                              ),
+                            ),
+                          );
+                        },
+                        child: MakeImageSlider("전지성")),
+                    InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Profile(
+                                personName: '석현',
+                                teamMember: teamData[2],
+                              ),
+                            ),
+                          );
+                        },
+                        child: MakeImageSlider("사석현")),
+                    InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Profile(
+                                personName: '혜린',
+                                teamMember: teamData[3],
+                              ),
+                            ),
+                          );
+                        },
+                        child: MakeImageSlider("박혜린")),
+                    InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Profile(
+                                personName: '지현',
+                                teamMember: teamData[4],
+                              ),
+                            ),
+                          );
+                        },
+                        child: MakeImageSlider("이지현")),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget sliderWidget() {
+    return CarouselSlider(
+      carouselController: _controller,
+      items: imageList.map(
+        (imgLink) {
+          return Builder(
+            builder: (context) {
+              return SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Image(
+                  fit: BoxFit.fill,
+                  image: NetworkImage(
+                    imgLink,
                   ),
                 ),
               );
             },
-            child: ListTile(
-              title: Text('세준'),
+          );
+        },
+      ).toList(),
+      options: CarouselOptions(
+        height: 300,
+        viewportFraction: 1.0,
+        autoPlay: true,
+        autoPlayInterval: const Duration(seconds: 2),
+        onPageChanged: (index, reason) {
+          setState(() {
+            _current = index;
+          });
+        },
+      ),
+    );
+  }
+
+  Widget sliderIndicator() {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: imageList.asMap().entries.map((entry) {
+          return GestureDetector(
+            onTap: () => _controller.animateToPage(entry.key),
+            child: Container(
+              width: 12,
+              height: 12,
+              margin:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color:
+                    Colors.white.withOpacity(_current == entry.key ? 0.9 : 0.4),
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  Widget MakeImageSlider(name) {
+    String slidername = name;
+    //제가 만든 위젯인데, 돌아는 가는데 이렇게 하는게 맞나 모르겠습니다.
+
+    return Container(
+      width: 375,
+      height: 351,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            width: 343,
+            height: 240,
+            decoration: ShapeDecoration(
+              color: Color(0xFFF6F6F6),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
+            ),
+            child: Stack(
+              children: [
+                sliderWidget(),
+                sliderIndicator(),
+              ],
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Profile(
-                          personName: '지성',
-                          teamMember: teamData[1],
-                        )),
-              );
-            },
-            child: ListTile(
-              title: Text('지성'),
+          SizedBox(
+            width: 343,
+            height: 35,
+            child: Text(
+              slidername,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Profile(
-                          personName: '석현',
-                          teamMember: teamData[2],
-                        )),
-              );
-            },
-            child: ListTile(
-              title: Text('석현'),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Profile(
-                          personName: '혜린',
-                          teamMember: teamData[3],
-                        )),
-              );
-            },
-            child: ListTile(
-              title: Text('혜린'),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Profile(
-                          personName: '지현',
-                          teamMember: teamData[4],
-                        )),
-              );
-            },
-            child: ListTile(
-              title: Text('지현'),
+          SizedBox(
+            width: 343,
+            height: 35,
+            child: Text(
+              'minute ago',
+              style: TextStyle(
+                color: Color(0xFFBDBDBD),
+                fontSize: 16,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ],
