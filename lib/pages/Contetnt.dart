@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+
+
+import '../Profile/Page/ProfilePage2.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:miniproject/pages/home.dart';
 import 'package:miniproject/Profile/Page/ProfilePage.dart';
 import 'package:miniproject/team_member.dart';
 
+
 class ContentPage extends StatelessWidget {
-  const ContentPage({super.key});
+  const ContentPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -87,6 +92,7 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -140,5 +146,6 @@ class _MyPageState extends State<MyPage> {
             );
           },
         ));
+
   }
 }
