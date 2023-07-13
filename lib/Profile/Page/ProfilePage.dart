@@ -25,10 +25,8 @@ class Profilepage extends StatefulWidget {
 class _ProfilepageState extends State<Profilepage> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
-
       appBar: AppBar(
         title: Text(
           widget.teamMember.name,
@@ -104,7 +102,6 @@ class _ProfilepageState extends State<Profilepage> {
             child: widget.isButtonPress
                 ? ProfileList(personList: widget.personList)
                 : ReviewPage(),
-
           ),
         ],
       ),
