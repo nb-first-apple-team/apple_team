@@ -9,13 +9,13 @@ class TeamMember {
   final String imagePath;
   final String backPath;
 
-  TeamMember(
-      {required this.name,
-      required this.mbti,
-      required this.strengths,
-      required this.collaboration,
-      required this.blogLink,
-      required this.imagePath,
-      required this.backPath,
-});
+  TeamMember({
+    required this.name,
+    required this.mbti,
+    required this.strengths,
+    required this.collaboration,
+    required this.blogLink,
+    required this.imagePath,
+    required this.backPath,
+  });
 }
