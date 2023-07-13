@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import '../ProfileList.dart';
 import '../ProfileTop.dart';
-import '../ReviewList.dart';
 import 'package:miniproject/team_member.dart';
+import 'package:miniproject/Profile/ProfileList.dart';
+import 'package:miniproject/Profile/ProfileTop.dart';
+import 'package:miniproject/Profile/review_page.dart';
 
 class Profilepage extends StatefulWidget {
   final List<Person> personList;
@@ -30,7 +32,7 @@ class _ProfilepageState extends State<Profilepage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           widget.teamMember.name,
@@ -106,8 +108,8 @@ class _ProfilepageState extends State<Profilepage> {
             child: widget.isButtonPress
                 ? ProfileList(personList: widget.personList)
                 : ReviewPage(
-                    reviewMap: reviewMap,
-                    onSaveReview: onSaveReview,
+                    // reviewMap: reviewMap,
+                    // reviewpage: onSaveReview,
                   ),
           ),
         ],

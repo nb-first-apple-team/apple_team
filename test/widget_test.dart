@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:miniproject/Service.dart/main.dart';
+import 'package:miniproject/main.dart';
 
 
 

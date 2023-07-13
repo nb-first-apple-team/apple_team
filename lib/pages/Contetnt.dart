@@ -86,7 +86,8 @@ class _MyPageState extends State<MyPage> {
           collaboration: collaboration[index],
           blogLink: blogLink[index],
           imagePath: teamImagePath[index],
-          backPath: teamBackImagePath[index]));
+          backPath: teamBackImagePath[index],
+          ));
   int _current = 0;
   final CarouselController _controller = CarouselController();
   List imageList = [
