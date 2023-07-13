@@ -89,14 +89,13 @@ class _MyPageState extends State<MyPage> {
           backPath: teamBackImagePath[index]));
   int _current = 0;
   final CarouselController _controller = CarouselController();
-  List imageList = [
-    "https://cdn.pixabay.com/photo/2014/04/14/20/11/pink-324175_1280.jpg",
-    "https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_1280.jpg",
-    "https://cdn.pixabay.com/photo/2012/03/01/00/55/flowers-19830_1280.jpg",
-    "https://cdn.pixabay.com/photo/2015/06/19/20/13/sunset-815270_1280.jpg",
-    "https://cdn.pixabay.com/photo/2016/01/08/05/24/sunflower-1127174_1280.jpg",
+  List<String> imageList = [
+    'images/sejun2.png',
+    'images/sung3.png',
+    'images/hyun3.png',
+    'images/hyerin3.png',
+    'images/seok3.png',
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,16 +146,6 @@ class _MyPageState extends State<MyPage> {
                     SizedBox(
                       width: 343,
                       height: 36,
-                      child: Text(
-                        'Content',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 30,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
                     ),
                     const SizedBox(height: 3),
                     InkWell(
@@ -242,14 +231,11 @@ class _MyPageState extends State<MyPage> {
           return Builder(
             builder: (context) {
               return SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Image(
-                  fit: BoxFit.fill,
-                  image: NetworkImage(
+                  width: MediaQuery.of(context).size.width,
+                  child: Image.asset(
                     imgLink,
-                  ),
-                ),
-              );
+                    fit: BoxFit.fill,
+                  ));
             },
           );
         },

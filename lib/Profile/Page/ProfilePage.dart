@@ -26,10 +26,6 @@ class _ProfilepageState extends State<Profilepage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text(
-          widget.teamMember.name,
-          style: TextStyle(color: Colors.black),
-        ),
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();

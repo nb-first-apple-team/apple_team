@@ -53,7 +53,13 @@ class ProfileTop extends StatelessWidget {
           ],
         ),
         SizedBox(height: 10),
-        SizedBox(height: 80),
+        SizedBox(height: 60),
+        Text(
+          teamMember.name,
+          style: TextStyle(
+              color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(height: 10),
         GestureDetector(
           onTap: () {
             Navigator.push(
