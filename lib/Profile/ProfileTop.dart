@@ -28,16 +28,32 @@ class ProfileTop extends StatelessWidget {
               ),
             ),
             Transform.translate(
-              offset: Offset(0, 5), // Adjust the offset as needed
-              child: CircleAvatar(
-                radius: 90,
-                backgroundImage: AssetImage(teamMember.imagePath),
+              offset: Offset(0, 80), // Adjust the offset as needed
+              child: Container(
+                padding: EdgeInsets.all(7),
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    begin: Alignment.bottomRight,
+                    end: Alignment.topLeft,
+                    colors: [
+                      Color(0xff4dabf7),
+                      Color(0xffda77f2),
+                      Color(0xfff783ac),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(500),
+                ),
+                child: CircleAvatar(
+                  radius: 95,
+                  backgroundImage: AssetImage(teamMember.imagePath),
+                ),
               ),
-            )
+            ),
           ],
         ),
         SizedBox(height: 10),
-        SizedBox(height: 8),
+        SizedBox(height: 80),
         GestureDetector(
           onTap: () {
             Navigator.push(

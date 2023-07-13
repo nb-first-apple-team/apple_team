@@ -7,7 +7,10 @@ import 'package:miniproject/team_member.dart';
 class Profile extends StatefulWidget {
   final String personName;
   final TeamMember teamMember;
-  Profile({required this.personName, required this.teamMember});
+  Profile({
+    required this.personName,
+    required this.teamMember,
+  });
 
   @override
   State<Profile> createState() => _ProfileState();

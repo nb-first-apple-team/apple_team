@@ -21,16 +21,10 @@ class Profilepage extends StatefulWidget {
 }
 
 class _ProfilepageState extends State<Profilepage> {
-  Map<int, String> reviewMap = {}; // 각 프로필의 리뷰를 저장할 맵
-  void onSaveReview(Map<int, String> updatedReviewMap) {
-    setState(() {
-      reviewMap = updatedReviewMap;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           widget.teamMember.name,
@@ -54,7 +48,7 @@ class _ProfilepageState extends State<Profilepage> {
           ProfileTop(teamMember: widget.teamMember),
           SizedBox(
             width: 10,
-            height: 10,
+            height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -105,10 +99,7 @@ class _ProfilepageState extends State<Profilepage> {
           Expanded(
             child: widget.isButtonPress
                 ? ProfileList(personList: widget.personList)
-                : ReviewPage(
-                    reviewMap: reviewMap,
-                    onSaveReview: onSaveReview,
-                  ),
+                : ReviewPage(),
           ),
         ],
       ),

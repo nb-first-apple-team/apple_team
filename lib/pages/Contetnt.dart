@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:miniproject/pages/home.dart';
 import 'package:miniproject/team_member.dart';
 import '../Profile/Page/ProfilePage2.dart';
 
@@ -100,6 +100,33 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Content",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 30,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+      ),
       body: Column(
         children: [
           Expanded(
@@ -107,7 +134,7 @@ class _MyPageState extends State<MyPage> {
               width: double.infinity,
               height: double.infinity,
               padding: const EdgeInsets.only(
-                top: 50,
+                top: 10,
               ),
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(color: Colors.white),
@@ -268,7 +295,6 @@ class _MyPageState extends State<MyPage> {
 
   Widget MakeImageSlider(name) {
     String slidername = name;
-    //제가 만든 위젯인데, 돌아는 가는데 이렇게 하는게 맞나 모르겠습니다.
 
     return Container(
       width: 375,
