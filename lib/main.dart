@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'Service.dart/TeamService.dart';
 
-import 'TeamService.dart';
-import '../pages/home.dart';
+// <<<<<<< HEAD:lib/Service.dart/main.dart
+import 'Service.dart/TeamService.dart';
+import 'pages/home.dart';
+// import 'Service.dart/Profile/TeamService.dart';
+// import 'Service.dart/pages/home.dart';
+// >>>>>>> VisitReviewList:lib/main.dart
 
 void main() {
   runApp(
@@ -19,7 +24,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {

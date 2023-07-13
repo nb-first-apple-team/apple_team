@@ -16,5 +16,6 @@ class TeamMember {
       required this.collaboration,
       required this.blogLink,
       required this.imagePath,
-      required this.backPath});
+      required this.backPath,
+});
 }
