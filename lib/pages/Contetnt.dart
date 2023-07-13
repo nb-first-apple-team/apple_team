@@ -145,20 +145,6 @@ class _MyPageState extends State<MyPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      width: 343,
-                      height: 36,
-                      child: Text(
-                        'Content',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 30,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
                     const SizedBox(height: 3),
                     InkWell(
                         onTap: () {
