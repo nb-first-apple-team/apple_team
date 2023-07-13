@@ -2,9 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Service.dart/TeamService.dart';
-
-// <<<<<<< HEAD:lib/Service.dart/main.dart
-import 'Service.dart/TeamService.dart';
 import 'pages/home.dart';
 // import 'Service.dart/Profile/TeamService.dart';
 // import 'Service.dart/pages/home.dart';

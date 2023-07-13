@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import '../ProfileList.dart';
 import '../ProfileTop.dart';
 import 'package:miniproject/team_member.dart';
-import 'package:miniproject/Profile/ProfileList.dart';
-import 'package:miniproject/Profile/ProfileTop.dart';
 import 'package:miniproject/Profile/review_page.dart';
 
 class Profilepage extends StatefulWidget {
