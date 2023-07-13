@@ -1,27 +1,60 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:miniproject/Profile/ProfileList.dart';
-import 'package:miniproject/Profile/ProfileTop.dart';
-import 'package:miniproject/Profile/ReviewList.dart';
+import '../ProfileList.dart';
+import '../ProfileTop.dart';
+import '../ReviewList.dart';
+import 'package:miniproject/team_member.dart';
 
-class Profile extends StatefulWidget {
-  Profile({Key? key}) : super(key: key);
+class Profilepage extends StatefulWidget {
+  final List<Person> personList;
+  bool isButtonPress = true;
+  final TeamMember teamMember;
+
+  Profilepage({
+    Key? key,
+    required this.personList,
+    required this.isButtonPress,
+    required this.teamMember,
+  }) : super(key: key);
 
   @override
-  _ProfileState createState() => _ProfileState();
+  State<Profilepage> createState() => _ProfilepageState();
 }
 
-class _ProfileState extends State<Profile> {
-  bool isButtonPress = false;
+class _ProfilepageState extends State<Profilepage> {
+  Map<int, String> reviewMap = {}; // 각 프로필의 리뷰를 저장할 맵
+  void onSaveReview(Map<int, String> updatedReviewMap) {
+    setState(() {
+      reviewMap = updatedReviewMap;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          widget.teamMember.name,
+          style: TextStyle(color: Colors.black),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+      ),
       body: Column(
         children: [
-          ProfileTop(),
+          ProfileTop(teamMember: widget.teamMember),
           SizedBox(
-            height: 50,
+            width: 10,
+            height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -29,55 +62,53 @@ class _ProfileState extends State<Profile> {
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    isButtonPress = true;
+                    widget.isButtonPress = true;
                   });
                 },
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(180, 50),
-                  primary: isButtonPress
-                      ? Colors.grey.shade400
-                      : Colors.grey.shade200,
+                  primary: widget.isButtonPress
+                      ? Colors.grey.shade600
+                      : Colors.grey.shade400,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
                 child: Text(
                   "Profile",
-                  style: TextStyle(
-                    color: isButtonPress ? Colors.white : Colors.black54,
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    isButtonPress = false;
+                    widget.isButtonPress = false;
                   });
                 },
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(180, 50),
-                  primary: !isButtonPress
+                  primary: widget.isButtonPress
                       ? Colors.grey.shade400
-                      : Colors.grey.shade200,
+                      : Colors.grey.shade600,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
                 child: Text(
                   "Review",
-                  style: TextStyle(
-                    color: !isButtonPress ? Colors.white : Colors.black54,
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(color: Colors.black54, fontSize: 18),
                 ),
               ),
             ],
           ),
+          SizedBox(height: 20),
           Expanded(
-            child: isButtonPress
-                ? ProfileList(itemBuilder: (context, index) => ListTile())
-                : ReviewPage(),
+            child: widget.isButtonPress
+                ? ProfileList(personList: widget.personList)
+                : ReviewPage(
+                    reviewMap: reviewMap,
+                    onSaveReview: onSaveReview,
+                  ),
           ),
         ],
       ),
