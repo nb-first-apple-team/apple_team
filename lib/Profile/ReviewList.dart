@@ -1,20 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'review_page.dart';
+import 'package:provider/provider.dart';
+import 'package:miniproject/Profile/TeamService.dart'; // TeamService를 임포트합니다.
+import 'review_page.dart'; // 새로운 파일을 임포트합니다.
 
-import 'ProfileList.dart';
+class TeamService with ChangeNotifier {
+ List<String> reviewList = [];
 
-class ReviewPage extends StatefulWidget {
-  const ReviewPage({super.key});
-
-  @override
-  State<ReviewPage> createState() => _ReviewPageState();
+  void addReview(String memo) {
+    reviewList.add(memo);
+    notifyListeners();
+}
 }
 
-class _ReviewPageState extends State<ReviewPage> {
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, index) => ListTile(),
+    return ChangeNotifierProvider(
+      create: (_) => TeamService(),
+      child: MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('My App'),
+          ),
+          body: ReviewPage(), // ReviewPage 위젯을 사용합니다.
+        ),
+      ),
     );
   }
 }
