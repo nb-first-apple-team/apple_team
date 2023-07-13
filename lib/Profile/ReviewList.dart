@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'review_page.dart';
 import 'package:provider/provider.dart';
-import 'package:miniproject/Profile/TeamService.dart'; // TeamService를 임포트합니다.
+import 'package:miniproject/Service.dart/TeamService.dart'; // TeamService를 임포트합니다.
 import 'review_page.dart'; // 새로운 파일을 임포트합니다.
 
 class TeamService with ChangeNotifier {

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'Profile/TeamService.dart';
+import 'Service.dart/TeamService.dart';
 import 'pages/home.dart';
 
 void main() {
