@@ -124,7 +124,7 @@ class _ProfileState extends State<Profile> {
           photo: Image.asset('images/sung2.png'),
         ),
         Person(
-          title: '🐔 장점',
+          title: '장점',
           subtitle: '뭐든 적응만하면 하는 성격',
           photo: Image.asset('images/sung3.png'),
         ),

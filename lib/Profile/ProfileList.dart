@@ -6,7 +6,11 @@ class Person {
   final String subtitle;
   final Widget photo;
 
-  Person({required this.title, required this.subtitle, required this.photo});
+  Person({
+    required this.title,
+    required this.subtitle,
+    required this.photo,
+  });
 }
 
 class ProfileList extends StatelessWidget {
