@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class TeamMember {
   final String name;
   final String mbti;
