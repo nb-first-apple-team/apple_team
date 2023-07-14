@@ -45,65 +45,67 @@ class _ProfilepageState extends State<Profilepage> {
           color: Colors.black,
         ),
       ),
-      body: Column(
-        children: [
-          ProfileTop(teamMember: widget.teamMember),
-          SizedBox(
-            width: 10,
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    widget.isButtonPress = true;
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  fixedSize: Size(180, 50),
-                  primary: widget.isButtonPress
-                      ? Colors.grey.shade600
-                      : Colors.grey.shade400,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ProfileTop(teamMember: widget.teamMember),
+            SizedBox(
+              width: 10,
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      widget.isButtonPress = true;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(180, 50),
+                    primary: widget.isButtonPress
+                        ? Colors.grey.shade600
+                        : Colors.grey.shade400,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: Text(
+                    "Profile",
+                    style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                 ),
-                child: Text(
-                  "Profile",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    widget.isButtonPress = false;
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  fixedSize: Size(180, 50),
-                  primary: widget.isButtonPress
-                      ? Colors.grey.shade400
-                      : Colors.grey.shade600,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      widget.isButtonPress = false;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(180, 50),
+                    primary: widget.isButtonPress
+                        ? Colors.grey.shade400
+                        : Colors.grey.shade600,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: Text(
+                    "Review",
+                    style: TextStyle(color: Colors.black54, fontSize: 18),
                   ),
                 ),
-                child: Text(
-                  "Review",
-                  style: TextStyle(color: Colors.black54, fontSize: 18),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 30),
-          Expanded(
-            child: widget.isButtonPress
-                ? ProfileList(personList: widget.personList)
-                : ReviewPage(),
-          ),
-        ],
+              ],
+            ),
+            SizedBox(height: 30),
+            Expanded(
+              child: widget.isButtonPress
+                  ? ProfileList(personList: widget.personList)
+                  : ReviewPage(),
+            ),
+          ],
+        ),
       ),
     );
   }
