@@ -1,134 +1,47 @@
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../Service.dart/TeamService.dart';
 
 class ReviewPage extends StatefulWidget {
+  const ReviewPage({
+    Key? key,
+  }) : super(key: key);
+
   @override
-  _ReviewPageState createState() => _ReviewPageState();
+  State<ReviewPage> createState() => _ReviewPageState();
 }
 
 class _ReviewPageState extends State<ReviewPage> {
-  List<String> reviewList = [];
-  List<TextEditingController> textControllers = [];
-  List<bool> likedStatusList = [];
-
-  void _deleteReview(int index) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      reviewList.removeAt(index); // 메모 삭제
-      textControllers.removeAt(index); // TextEditingController 제거
-      likedStatusList.removeAt(index); // 좋아요 상태 제거
-    });
-    await preferences.setStringList('reviewList', reviewList);
-  }
+  final teamService = TeamService();
+  final TextEditingController authorController = TextEditingController();
+  final TextEditingController contentController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _loadReviewList();
-  }
-
-  void _loadReviewList() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    List<String>? savedReviewList = preferences.getStringList('reviewList');
-    setState(() {
-      reviewList = savedReviewList ?? [];
-      textControllers = List.generate(
-        reviewList.length,
-        (index) => TextEditingController(text: reviewList[index]),
-      );
-      likedStatusList = List.generate(
-        reviewList.length,
-        (index) => false,
-      );
-    });
-  }
-
-  @override
-  void dispose() {
-    _saveReviewList();
-    for (TextEditingController controller in textControllers) {
-      controller.dispose();
-    }
-    super.dispose();
-  }
-
-  void _saveReviewList() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setStringList('reviewList', reviewList);
-  }
-
-  void _addReview() {
-    setState(() {
-      reviewList.add('');
-      textControllers.add(TextEditingController(text: ''));
-      likedStatusList.add(false);
-    });
-  }
-
-  void _toggleLike(int index) {
-    setState(() {
-      likedStatusList[index] = !likedStatusList[index]; // 좋아요 상태를 토글
-    });
+    teamService.loadReviews();
+    Provider.of<TeamService>(context, listen: false).loadReviews();
   }
 
   @override
   Widget build(BuildContext context) {
+    final teamService = Provider.of<TeamService>(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: reviewList.length,
+              itemCount: teamService.reviews.length,
               itemBuilder: (context, index) {
+                final review = teamService.reviews[index];
                 return ListTile(
-                  title: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          controller: textControllers[index],
-                          onChanged: (value) {
-                            reviewList[index] = value;
-                          },
-                          decoration: InputDecoration(
-                            labelText: 'Review',
-                          ),
-                        ),
-                      ),
-                      Container(
-                        child: Column(
-                          children: [
-                            Text(
-                              "4:30",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                _toggleLike(index); // 좋아요 토글
-                              },
-                              child: Icon(
-                                likedStatusList[index]
-                                    ? CupertinoIcons.heart_fill
-                                    : CupertinoIcons.heart,
-                                color: likedStatusList[index]
-                                    ? Colors.pink
-                                    : Colors.black,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                _deleteReview(index); // 메모 삭제
-                              },
-                              child: Icon(CupertinoIcons.trash),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  title: Text(review.author),
+                  subtitle: Text(review.content),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () => teamService.deleteReview(index),
                   ),
                 );
               },
@@ -136,9 +49,67 @@ class _ReviewPageState extends State<ReviewPage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addReview,
-        child: Icon(Icons.add),
+      floatingActionButton: Container(
+        width: 40,
+        height: 40,
+        child: FloatingActionButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                String author = '';
+                String content = '';
+                authorController.text = ''; // 텍스트 필드 초기화
+                contentController.text = '';
+                return AlertDialog(
+                  title: const Text('Leave a Review'),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextField(
+                        decoration: const InputDecoration(
+                          labelText: 'Name',
+                        ),
+                        controller: authorController,
+                      ),
+                      TextField(
+                        decoration: const InputDecoration(
+                          labelText: 'Review',
+                        ),
+                        controller: contentController,
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Color.fromARGB(255, 66, 172, 69),
+                      ),
+                      onPressed: () {
+                        author = authorController.text;
+                        content = contentController.text;
+                        if (author.isNotEmpty && content.isNotEmpty) {
+                          teamService.reviews.add(
+                            Review(
+                              author: author,
+                              content: content,
+                            ),
+                          );
+                          teamService.saveReviews();
+                          teamService.loadReviews();
+                          Navigator.of(context).pop();
+                        }
+                      },
+                      child: const Text('Submit'),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          backgroundColor: Colors.teal[200],
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }

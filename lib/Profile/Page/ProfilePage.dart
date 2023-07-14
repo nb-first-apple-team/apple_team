@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import '../ProfileList.dart';
+import '../../Service.dart/TeamService.dart';
+import 'ProfilePage2.dart';
 import '../ProfileTop.dart';
-import 'package:miniproject/team_member.dart';
 import 'package:miniproject/Profile/review_page.dart';
 
 class Profilepage extends StatefulWidget {
-  final List<Person> personList;
   bool isButtonPress = true;
   final TeamMember teamMember;
+  final List<Person> personList;
 
   Profilepage({
     Key? key,
@@ -43,65 +43,69 @@ class _ProfilepageState extends State<Profilepage> {
           color: Colors.black,
         ),
       ),
-      body: Column(
-        children: [
-          ProfileTop(teamMember: widget.teamMember),
-          SizedBox(
-            width: 10,
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    widget.isButtonPress = true;
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  fixedSize: Size(180, 50),
-                  primary: widget.isButtonPress
-                      ? Colors.grey.shade600
-                      : Colors.grey.shade400,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ProfileTop(teamMember: widget.teamMember),
+            SizedBox(
+              width: 10,
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      widget.isButtonPress = true;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(180, 50),
+                    primary: widget.isButtonPress
+                        ? Colors.grey.shade600
+                        : Colors.grey.shade400,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: Text(
+                    "Profile",
+                    style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                 ),
-                child: Text(
-                  "Profile",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    widget.isButtonPress = false;
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  fixedSize: Size(180, 50),
-                  primary: widget.isButtonPress
-                      ? Colors.grey.shade400
-                      : Colors.grey.shade600,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      widget.isButtonPress = false;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(180, 50),
+                    primary: widget.isButtonPress
+                        ? Colors.grey.shade400
+                        : Colors.grey.shade600,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: Text(
+                    "Review",
+                    style: TextStyle(color: Colors.black54, fontSize: 18),
                   ),
                 ),
-                child: Text(
-                  "Review",
-                  style: TextStyle(color: Colors.black54, fontSize: 18),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 30),
-          Expanded(
-            child: widget.isButtonPress
-                ? ProfileList(personList: widget.personList)
-                : ReviewPage(),
-          ),
-        ],
+              ],
+            ),
+            SizedBox(height: 30),
+            SizedBox(
+              height:
+                  MediaQuery.of(context).size.height - 390, // 적절한 높이를 지정해야합니다.
+              child: widget.isButtonPress
+                  ? ProfileList(personList: widget.personList)
+                  : ReviewPage(),
+            ),
+          ],
+        ),
       ),
     );
   }

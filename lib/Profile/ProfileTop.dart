@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:miniproject/Profile/Webview.dart';
-import 'package:miniproject/team_member.dart';
+import '../Service.dart/TeamService.dart';
 
 class ProfileTop extends StatelessWidget {
   const ProfileTop({Key? key, required this.teamMember}) : super(key: key);
